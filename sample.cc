@@ -13,6 +13,7 @@ int main_test(int argc, char *argv[]) {
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
 	cout << "\tAfter city_test()\n";
+	//bkach
 
 	/* Place your code for testing sample after this line. */
 
