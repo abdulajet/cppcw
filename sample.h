@@ -22,10 +22,13 @@ class sample : public city {
 
 void sample::print() {
   // prints sample vector to an output stream
+  cout << "<" << numbers.size() << ": ";
    for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
        cout << *i << " ";
   }
+   cout << ">";
    }
+
 
 
 
