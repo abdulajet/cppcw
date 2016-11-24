@@ -14,24 +14,28 @@ class sample : public city {
 
   sample();
   sample(vector<long double> v) : numbers(v){};
+  
 
   void print();
+  vector<long double> get_data();
+  long double minimum();
+  long double maximum();
+  long double range(sample);
+  long double midrange(sample);
 
 };
 // test
 
-void sample::print() {
-  // prints sample vector to an output stream
-   for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
-       cout << *i << " ";
-  }
-  cout << endl;
-}
 
 ostream & operator<< (ostream& s, sample n){
 	n.print();
   return s;
 }
+
+vector<long double> sample::get_data(){
+  return numbers;
+}
+
 
 /* With normal (non-generic) code, the source (.cc) includes the header (.h). */
 #endif
