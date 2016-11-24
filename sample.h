@@ -11,12 +11,12 @@ class sample : public city {
   // DON'T CHANGE ANYTHING ABOVE THIS LINE!!! (You can add more includes)
  public:
   vector<long double> numbers;
-  
+
   sample();
   sample(vector<long double> v) : numbers(v){};
-  
+
   void print();
-  
+
 };
 // test
 
@@ -25,12 +25,13 @@ void sample::print() {
    for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
        cout << *i << " ";
   }
-   }
+  cout << endl;
+}
 
-
-
-
-
+ostream & operator<< (ostream& s, sample n){
+	n.print();
+  return s;
+}
 
 /* With normal (non-generic) code, the source (.cc) includes the header (.h). */
 #endif

@@ -12,7 +12,7 @@ int main_test(int argc, char *argv[]) {
 
   vector<long double> numbers = {1, 2 ,3 ,4 ,5 ,6};
   sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
-  
+
 
 
 	cout << "\tBefore city_test()\n";
@@ -21,11 +21,10 @@ int main_test(int argc, char *argv[]) {
 
 	/* Place your code for testing sample after this line. */
 
-        
-	a_sample.print();
+
+//	a_sample.print();
+
+	cout << a_sample << endl;
 
 	return 0;
 }
-
-
-
