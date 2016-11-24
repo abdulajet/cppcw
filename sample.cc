@@ -9,21 +9,18 @@ int main_test(int argc, char *argv[]) {
 	 * you have defined the sample constructor that takes a
 	 * vector
 	 */
-<<<<<<< HEAD
+
   vector<long double> numbers = {1, 2 ,3 ,4 ,5 ,6};
   sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
   
 
-=======
-	sample a_sample; // = { 7, 11, 2, 13, 3, 5};
->>>>>>> origin/abdul
+
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
 	cout << "\tAfter city_test()\n";
 
 	/* Place your code for testing sample after this line. */
 
-<<<<<<< HEAD
         
 	a_sample.print();
 
@@ -31,7 +28,4 @@ int main_test(int argc, char *argv[]) {
 }
 
 
-=======
-	return 0;
-}
->>>>>>> origin/abdul
+
