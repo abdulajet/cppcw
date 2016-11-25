@@ -4,14 +4,19 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include <cmath>
+
 using namespace std;
 #include "city.hh"
 
 class sample : public city {
   // DON'T CHANGE ANYTHING ABOVE THIS LINE!!! (You can add more includes)
- public:
+ private:
   vector<long double> numbers;
+ public:
 
+
+  
   sample();
   sample(vector<long double> v) : numbers(v){};
   
@@ -22,6 +27,8 @@ class sample : public city {
   long double maximum();
   long double range(sample);
   long double midrange(sample);
+  long double mean();
+  long double variance(sample);
 
 };
 // test
