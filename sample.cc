@@ -2,6 +2,7 @@
 
 #include "sample.h"
 
+
 using namespace std;
 
 int main_test(int argc, char *argv[]) {
@@ -13,8 +14,11 @@ int main_test(int argc, char *argv[]) {
   // definition of member variable(s)
   vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
 
+
   //creating a new sample object called "a_sample"
   sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
+  // long double min = a_sample.minimum();
+  // long double max = a_sample.maximum();
 
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
@@ -34,6 +38,8 @@ int main_test(int argc, char *argv[]) {
 	cout << a_sample.maximum() << endl;
 	cout << a_sample.range(a_sample) << endl;
 	cout << a_sample.midrange(a_sample) << endl;
+	cout << a_sample.mean() << endl;
+	cout << a_sample.variance(a_sample) << endl;
 
 
 	//	a_sample.get_data().print();
@@ -88,4 +94,43 @@ long double sample::midrange(sample a_sample) {
   long double midrange = (max + min)/2;
 
   return midrange;
+}
+
+long double sample::mean(){
+  long double n = numbers.size();
+  long double total;
+  long double mean;
+  for (int i = 0; i < n; ++i){
+    total = total + numbers[i]; 
+  }
+  mean = total/n;
+  return mean;
+}
+/*
+long double sample::variance(sample a_sample){
+  long double mean = a_sample.mean();
+  long double n = numbers.size();
+  long double x;
+  long double y;
+  long double total;
+  long double var;
+  for (int i =0; i < n; i++){
+    x = (numbers[i] - mean);
+    y = pow(x, 2);
+    total = total + y;
+  }
+  var = total/n;
+  return var;
+}
+*/
+
+long double sample::variance(sample a_sample){
+  long double mean = a_sample.mean();
+  long double n = numbers.size();
+  long double tmp = 0;
+
+  for (int i = 0; i < n; i++){
+    tmp += (numbers[i] - mean)*(numbers[i] - mean);
+  }
+  return tmp/n;
 }
