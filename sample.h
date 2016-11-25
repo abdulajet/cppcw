@@ -27,6 +27,7 @@ class sample : public city {
   long double midrange();
   long double mean();
   long double variance();
+  long double std_deviation();
 
 };
 // test

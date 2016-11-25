@@ -39,6 +39,7 @@ int main_test(int argc, char *argv[]) {
 	cout << a_sample.midrange() << endl;
 	cout << a_sample.mean() << endl;
 	cout << a_sample.variance() << endl;
+	cout << a_sample.std_deviation() << endl;
 
 
 	//	a_sample.get_data().print();
@@ -107,12 +108,19 @@ long double sample::mean(){
 }
 
 long double sample::variance(){
-  long double mean = mean();
+  long double m = mean();
   long double n = numbers.size();
   long double tmp = 0;
 
   for (int i = 0; i < n; i++){
-    tmp += (numbers[i] - mean)*(numbers[i] - mean);
+    tmp += (numbers[i] - m)*(numbers[i] - m);
   }
   return tmp/n;
+}
+
+long double sample::std_deviation(){
+  long double var = variance();
+  long double std = sqrt(var);
+
+  return std;
 }
