@@ -10,25 +10,11 @@ int main_test(int argc, char *argv[]) {
 	 * vector
 	 */
 
-  // integers for holding the long doubles for printing
-  int x;
-  int y;
-  int z;
-  int m;
-
   // definition of member variable(s)
-  vector<long double> numbers = {1, 2 ,3 ,4 ,5 ,6};
+  vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
 
   //creating a new sample object called "a_sample"
   sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
-
-  // cast long doubles to integers
-    x = a_sample.minimum();
-    y = a_sample.maximum();
-    z = a_sample.range(a_sample);
-    m = a_sample.midrange(a_sample);
-
-
 
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
@@ -42,11 +28,13 @@ int main_test(int argc, char *argv[]) {
 	// print vector contents from "a_sample"
 	cout << a_sample << endl;
 
+
 	// print test for mathematical functions
-	cout << x << endl;
-	cout << y << endl;
-	cout << z << endl;
-	cout << m << endl;
+	cout << a_sample.minimum() << endl;
+	cout << a_sample.maximum() << endl;
+	cout << a_sample.range(a_sample) << endl;
+	cout << a_sample.midrange(a_sample) << endl;
+
 
 	//	a_sample.get_data().print();
 
@@ -59,7 +47,7 @@ void sample::print() {
    for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
        cout << *i << " ";
   }
-   cout << ">" << endl;
+   cout << ">";
 }
 
 long double sample::minimum() {
