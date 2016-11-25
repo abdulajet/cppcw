@@ -14,8 +14,6 @@ class sample : public city {
  private:
   vector<long double> numbers;
  public:
-
-
   
   sample();
   sample(vector<long double> v) : numbers(v){};
@@ -25,10 +23,10 @@ class sample : public city {
   vector<long double> get_data();
   long double minimum();
   long double maximum();
-  long double range(sample);
-  long double midrange(sample);
+  long double range();
+  long double midrange();
   long double mean();
-  long double variance(sample);
+  long double variance();
 
 };
 // test

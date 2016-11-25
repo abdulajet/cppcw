@@ -17,9 +17,7 @@ int main_test(int argc, char *argv[]) {
 
   //creating a new sample object called "a_sample"
   sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
-  // long double min = a_sample.minimum();
-  // long double max = a_sample.maximum();
-
+   
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
 	cout << "\tAfter city_test()\n";
@@ -36,10 +34,11 @@ int main_test(int argc, char *argv[]) {
 	// print test for mathematical functions
 	cout << a_sample.minimum() << endl;
 	cout << a_sample.maximum() << endl;
-	cout << a_sample.range(a_sample) << endl;
-	cout << a_sample.midrange(a_sample) << endl;
+	cout << a_sample.get_data() << endl;
+	cout << a_sample.range() << endl;
+	cout << a_sample.midrange() << endl;
 	cout << a_sample.mean() << endl;
-	cout << a_sample.variance(a_sample) << endl;
+	cout << a_sample.variance() << endl;
 
 
 	//	a_sample.get_data().print();
@@ -80,17 +79,17 @@ long double sample::maximum() {
   return max;
 }
 
-long double sample::range(sample a_sample) {
-  long double max = a_sample.maximum();
-  long double min = a_sample.minimum();
+long double sample::range() {
+   long double max = maximum();
+   long double min = minimum();
   long double range = max - min;
 
   return range;
 }
 
-long double sample::midrange(sample a_sample) {
-  long double max = a_sample.maximum();
-  long double min = a_sample.minimum();
+long double sample::midrange() {
+  long double max = maximum();
+  long double min = minimum();
   long double midrange = (max + min)/2;
 
   return midrange;
@@ -98,34 +97,17 @@ long double sample::midrange(sample a_sample) {
 
 long double sample::mean(){
   long double n = numbers.size();
-  long double total;
-  long double mean;
+  long double total = 0;
+  long double mean = 0;
   for (int i = 0; i < n; ++i){
     total = total + numbers[i]; 
   }
   mean = total/n;
   return mean;
 }
-/*
-long double sample::variance(sample a_sample){
-  long double mean = a_sample.mean();
-  long double n = numbers.size();
-  long double x;
-  long double y;
-  long double total;
-  long double var;
-  for (int i =0; i < n; i++){
-    x = (numbers[i] - mean);
-    y = pow(x, 2);
-    total = total + y;
-  }
-  var = total/n;
-  return var;
-}
-*/
 
-long double sample::variance(sample a_sample){
-  long double mean = a_sample.mean();
+long double sample::variance(){
+  long double mean = mean();
   long double n = numbers.size();
   long double tmp = 0;
 
