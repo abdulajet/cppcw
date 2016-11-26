@@ -5,6 +5,7 @@
 #include <vector>
 #include <iterator>
 #include <cmath>
+#include <algorithm>
 
 using namespace std;
 #include "city.hh"
@@ -28,15 +29,21 @@ class sample : public city {
   long double mean();
   long double variance();
   long double std_deviation();
+  long double median();
 
 };
 // test
 
 
-ostream & operator<< (ostream& s, sample n){
-	n.print();
+ostream & operator<< (ostream& s, sample v){
+	v.print();
   return s;
 }
+/*
+istream& operator >> (istream& s, sample v){
+  
+}
+*/
 
 vector<long double> sample::get_data(){
   return numbers;
