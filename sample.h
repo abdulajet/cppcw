@@ -63,6 +63,7 @@ istream& operator >> (istream& s, sample &v){
     }
   }
 
+  //test
   return s;
 }
 
