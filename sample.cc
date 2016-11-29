@@ -19,7 +19,7 @@ int main_test(int argc, char *argv[]) {
 
   //creating a new sample object called "a_sample"
   sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
-   
+
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
 	cout << "\tAfter city_test()\n";
@@ -104,7 +104,7 @@ long double sample::mean(){
   long double total = 0;
   long double mean = 0;
   for (int i = 0; i < n; ++i){
-    total = total + numbers[i]; 
+    total = total + numbers[i];
   }
   mean = total/n;
   return mean;
