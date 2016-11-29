@@ -11,6 +11,8 @@ int main_test(int argc, char *argv[]) {
 	 * vector
 	 */
 
+  //TODO possibly change all for loops to iterators - more efficient
+
   // definition of member variable(s)
   vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
 
@@ -40,6 +42,7 @@ int main_test(int argc, char *argv[]) {
 	cout << a_sample.mean() << endl;
 	cout << a_sample.variance() << endl;
 	cout << a_sample.std_deviation() << endl;
+	cout << a_sample.median() << endl;
 
 
 	//	a_sample.get_data().print();
@@ -123,4 +126,19 @@ long double sample::std_deviation(){
   long double std = sqrt(var);
 
   return std;
+}
+
+long double sample::median(){
+  size_t n = numbers.size();
+  long double median = 0;
+
+  sort(numbers.begin(), numbers.end());
+
+  if (n % 2 == 0){
+    median = (numbers[n/2 - 1] + numbers[n/2])/2;
+	      }
+  else {
+    median = numbers[n/2];
+    }
+    return median;
 }
