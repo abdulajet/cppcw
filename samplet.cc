@@ -1,7 +1,5 @@
 // You can place the *definitions* of the generic methods here.
 
-// You can place the *definitions* of the generic methods here.
-
 template <class A_Type> void sample::print() {
   // prints sample vector to an output stream
   cout << "<" << numbers.size() << ": ";
