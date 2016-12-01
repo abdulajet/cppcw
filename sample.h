@@ -32,8 +32,6 @@ class sample : public city {
   long double median();
 
 };
-// test
-
 
 ostream & operator<< (ostream& s, sample v){
 	v.print();
