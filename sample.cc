@@ -5,6 +5,41 @@
 
 using namespace std;
 
+ostream & operator<< (ostream& s, sample v){
+	v.print();
+  return s;
+}
+
+istream& operator >> (istream& s, sample &v){
+  int len;
+  char lchev, colon, temp;
+  vector<long double> input;
+
+  if (s >> lchev){
+    if ((s >> len >> colon) && (lchev == '<' && colon == ':')){
+      while(s >> temp){
+        if (temp == '>'){
+          v = sample(input);
+          break;
+        }else{
+          input.push_back(temp);
+        }
+      }
+
+      if (input.size() != len) {
+        s.setstate(ios::badbit);
+      }
+
+    } else{
+      s.setstate(ios::badbit);
+    }
+  } else {
+    s.setstate(ios::badbit);
+  }
+
+  return s;
+}
+
 int main_test(int argc, char *argv[]) {
 	/* an empty sample object - initialise with a vector once
 	 * you have defined the sample constructor that takes a
@@ -14,11 +49,11 @@ int main_test(int argc, char *argv[]) {
   //TODO possibly change all for loops to iterators - more efficient
 
   // definition of member variable(s)
-  vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
+  //vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
 
 
   //creating a new sample object called "a_sample"
-  sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
+  sample a_sample; // = { 7, 11, 2, 13, 3, 5};
 
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
@@ -26,28 +61,29 @@ int main_test(int argc, char *argv[]) {
 
 	/* Place your code for testing sample after this line. */
 
-
-//	a_sample.print();
-
 	// print vector contents from "a_sample"
-	cout << a_sample << endl;
+	//cout << a_sample << endl;
 
 
-	// print test for mathematical functions
-	cout << a_sample.minimum() << endl;
-	cout << a_sample.maximum() << endl;
-	cout << a_sample.get_data() << endl;
-	cout << a_sample.range() << endl;
-	cout << a_sample.midrange() << endl;
-	cout << a_sample.mean() << endl;
-	cout << a_sample.variance() << endl;
-	cout << a_sample.std_deviation() << endl;
-	cout << a_sample.median() << endl;
+	sample s;
+	while (cin >> s){
+			cout << s << endl
+			 << s.minimum() << endl
+			 << s.maximum() << endl
+			 << s.range() << endl
+			 << s.midrange() << endl
+			 << s.median() << endl
+			 << s.mean() << endl
+			 << s.variance() << endl
+			 << s.std_deviation() << endl;
 
+			if (cin.bad()) {
+				cerr << "\nBad input \n\n";
+			}
 
-	//	a_sample.get_data().print();
+		}
+			return 0;
 
-	return 0;
 }
 
 void sample::print() {

@@ -16,7 +16,7 @@ class sample : public city {
   vector<long double> numbers;
  public:
 
-  sample();
+  sample(){};
   sample(vector<long double> v) : numbers(v){};
 
 
@@ -33,36 +33,6 @@ class sample : public city {
 
 };
 
-ostream & operator<< (ostream& s, sample v){
-	v.print();
-  return s;
-}
-
-istream& operator >> (istream& s, sample &v){
-  int len;
-  char lchev, colon, temp;
-
-  if (s >> lchev){
-    if ((s >> len >> colon) && (lchev == '<' && colon == ':')){
-      while(s >> temp){
-        if (temp == '>'){
-          break;
-        }else{
-          v.get_data().push_back(temp);
-        }
-      }
-
-      if (v.get_data().size() != len) {
-        //error
-      }
-
-    }else{
-      s.setstate(ios::badbit);
-    }
-  }
-
-  return s;
-}
 
 vector<long double> sample::get_data(){
   return numbers;
