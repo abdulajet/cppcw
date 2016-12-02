@@ -4,6 +4,39 @@
 
 
 using namespace std;
+ostream & operator<< (ostream& s, sample v){
+	v.print();
+  return s;
+}
+
+
+istream& operator >> (istream& s, sample &v){
+  int len;
+  char lchev, colon, temp;
+  vector<long double> input;
+
+  if (s >> lchev){
+    if ((s >> len >> colon) && (lchev == '<' && colon == ':')){
+      while(s >> temp){
+        if (temp == '>'){
+          v = sample(input);
+          break;
+        }else{
+          input.push_back(temp);
+        }
+      }
+
+      if (input.size() != len) {
+        s.setstate(ios::badbit);
+      }
+
+    }else{
+      s.setstate(ios::badbit);
+    }
+  }
+
+  return s;
+}
 
 ostream & operator<< (ostream& s, sample v){
 	v.print();

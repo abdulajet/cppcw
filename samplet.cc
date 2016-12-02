@@ -1,15 +1,15 @@
 // You can place the *definitions* of the generic methods here.
 
-template <class A_Type> void sample::print() {
+template <typename A_Type> void samplet < A_Type >::print() {
   // prints sample vector to an output stream
   cout << "<" << numbers.size() << ": ";
-   for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
+   for(typename vector<A_Type>::iterator i = numbers.begin(); i!= numbers.end(); i++){
        cout << *i << " ";
   }
    cout << ">";
 }
 
-template <class A_Type> A_Type sample<A_Type>::minimum() {
+template <typename A_Type> A_Type samplet<A_Type>::minimum() {
   long double n = numbers.size();
   long double min = numbers[0];
 
@@ -21,7 +21,7 @@ template <class A_Type> A_Type sample<A_Type>::minimum() {
   return min;
 }
 
-template <class A_Type> A_Type sample<A_Type>::maximum() {
+template <typename A_Type> A_Type samplet<A_Type>::maximum() {
   long double n = numbers.size();
   long double max = numbers[0];
 
@@ -33,7 +33,7 @@ template <class A_Type> A_Type sample<A_Type>::maximum() {
   return max;
 }
 
-template <class A_Type> A_Type sample<A_Type>::range() {
+template <typename A_Type> A_Type samplet<A_Type>::range() {
    long double max = maximum();
    long double min = minimum();
   long double range = max - min;
@@ -41,7 +41,7 @@ template <class A_Type> A_Type sample<A_Type>::range() {
   return range;
 }
 
-template <class A_Type> A_Type sample<A_Type>::midrange() {
+template <typename A_Type> A_Type samplet<A_Type>::midrange() {
   long double max = maximum();
   long double min = minimum();
   long double midrange = (max + min)/2;
@@ -49,7 +49,7 @@ template <class A_Type> A_Type sample<A_Type>::midrange() {
   return midrange;
 }
 
-template <class A_Type> A_Type sample<A_Type>::mean(){
+template <typename A_Type> A_Type samplet<A_Type>::mean(){
   long double n = numbers.size();
   long double total = 0;
   long double mean = 0;
@@ -60,7 +60,7 @@ template <class A_Type> A_Type sample<A_Type>::mean(){
   return mean;
 }
 
-template <class A_Type> A_Type sample<A_Type>::variance(){
+template <typename A_Type> A_Type samplet<A_Type>::variance(){
   long double m = mean();
   long double n = numbers.size();
   long double tmp = 0;
@@ -71,14 +71,14 @@ template <class A_Type> A_Type sample<A_Type>::variance(){
   return tmp/n;
 }
 
-template <class A_Type> A_Type sample<A_Type>::std_deviation(){
+template <typename A_Type> A_Type samplet<A_Type>::std_deviation(){
   long double var = variance();
   long double std = sqrt(var);
 
   return std;
 }
 
-template <class A_Type> A_Type sample<A_Type>::median(){
+template <typename A_Type> A_Type samplet<A_Type>::median(){
   size_t n = numbers.size();
   long double median = 0;
 
@@ -91,4 +91,9 @@ template <class A_Type> A_Type sample<A_Type>::median(){
     median = numbers[n/2];
     }
     return median;
+}
+
+template <typename A_Type> ostream & operator<< (ostream& s, samplet<A_Type> v){
+	v.print();
+  return s;
 }

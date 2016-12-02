@@ -38,6 +38,5 @@ vector<long double> sample::get_data(){
   return numbers;
 }
 
-
 /* With normal (non-generic) code, the source (.cc) includes the header (.h). */
 #endif
