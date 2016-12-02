@@ -25,6 +25,7 @@ int main_test(int argc, char *argv[]) {
         cout << s << endl;
 	cout << s.minimum() << endl;
 	cout << s.maximum() << endl;
+	cout<< s.median() << endl;
 
 	
 
