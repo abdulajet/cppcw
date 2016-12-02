@@ -3,10 +3,6 @@
 !.gitignore
 !sample.cc
 !sample.h
-<<<<<<< HEAD
 !samplet.h
 !samplet.cc
-=======
-!samplet.cc
-!samplet.h
->>>>>>> a41d475b6964aa912cf304f611f0ab400ecf2f6e
+!cwkt.cc

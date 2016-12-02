@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 #include "cityt.hh"
 
@@ -16,10 +17,8 @@ class samplet : public cityt<A_Type> {
   private:
   vector<A_Type> numbers;
  public:
-
   sample();
   sample(vector<A_Type> v) : numbers(v){};
-
 
   void print();
   vector<A_Type> get_data();
