@@ -3,8 +3,13 @@
 
 #include <iostream>
 #include <vector>
-using namespace std;
+#include <algorithm>
+#include <cmath>
 #include "cityt.hh"
+using namespace std;
+
+
+>>>>>>> d8a27cb3af3454f1e142a4aa4368e1df4fdc37c0
 
 template <typename A_Type>
 class samplet : public cityt<A_Type> {
@@ -12,11 +17,10 @@ class samplet : public cityt<A_Type> {
   private:
   vector<A_Type> numbers;
  public:
-  
-  sample();
-  sample(vector<A_Type> v) : numbers(v){};
-  
 
+  samplet(){};
+  samplet(vector<A_Type> v) : numbers(v){};
+  
   void print();
   vector<A_Type> get_data();
   A_Type minimum();
@@ -27,6 +31,8 @@ class samplet : public cityt<A_Type> {
   A_Type variance();
   A_Type std_deviation();
   A_Type median();
+
+
 };
 
 /* With generic code, it's the header (.h) that includes the source (.cc), not the other way around that is the normal practice with non-generic code. */

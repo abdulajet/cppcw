@@ -2,7 +2,37 @@
 
 #include "sample.h"
 
+
 using namespace std;
+
+ostream & operator<< (ostream& s, sample v){
+	v.print();
+  return s;
+}
+
+istream& operator >> (istream& s, sample &v){
+  int len = 0;
+  char lchev, colon, temp;
+  vector<long double> input;
+
+  if (s >> lchev){
+		if ((s >> len >> colon) && (colon == ':' && lchev == '<')){
+			while(s >> temp){
+				input.push_back(temp);
+			}
+		}else{
+			s.setstate(ios::badbit);
+		}
+  }
+
+	if (input.size() == len){
+		v = sample(input);
+	}else {
+		s.setstate(ios::badbit);
+	}
+
+  return s;
+}
 
 int main_test(int argc, char *argv[]) {
 	/* an empty sample object - initialise with a vector once
@@ -10,25 +40,14 @@ int main_test(int argc, char *argv[]) {
 	 * vector
 	 */
 
-  // integers for holding the long doubles for printing
-  int x;
-  int y;
-  int z;
-  int m;
+  //TODO possibly change all for loops to iterators - more efficient
 
   // definition of member variable(s)
-  vector<long double> numbers = {1, 2 ,3 ,4 ,5 ,6};
+  //vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
+
 
   //creating a new sample object called "a_sample"
-  sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
-
-  // cast long doubles to integers
-    x = a_sample.minimum();
-    y = a_sample.maximum();
-    z = a_sample.range(a_sample);
-    m = a_sample.midrange(a_sample);
-
-
+  sample a_sample; // = { 7, 11, 2, 13, 3, 5};
 
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
@@ -36,21 +55,29 @@ int main_test(int argc, char *argv[]) {
 
 	/* Place your code for testing sample after this line. */
 
-
-//	a_sample.print();
-
 	// print vector contents from "a_sample"
-	cout << a_sample << endl;
+	//cout << a_sample << endl;
 
-	// print test for mathematical functions
-	cout << x << endl;
-	cout << y << endl;
-	cout << z << endl;
-	cout << m << endl;
 
-	//	a_sample.get_data().print();
+	sample s;
+	while (cin >> s){
+			cout << s << endl
+			 << s.minimum() << endl
+			 << s.maximum() << endl
+			 << s.range() << endl
+			 << s.midrange() << endl
+			 << s.median() << endl
+			 << s.mean() << endl
+			 << s.variance() << endl
+			 << s.std_deviation() << endl;
 
-	return 0;
+			if (cin.bad()) {
+				cerr << "\nBad input \n\n";
+			}
+
+		}
+			return 0;
+
 }
 
 void sample::print() {
@@ -59,7 +86,7 @@ void sample::print() {
    for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
        cout << *i << " ";
   }
-   cout << ">" << endl;
+   cout << ">";
 }
 
 long double sample::minimum() {
@@ -86,18 +113,62 @@ long double sample::maximum() {
   return max;
 }
 
-long double sample::range(sample a_sample) {
-  long double max = a_sample.maximum();
-  long double min = a_sample.minimum();
+long double sample::range() {
+   long double max = maximum();
+   long double min = minimum();
   long double range = max - min;
 
   return range;
 }
 
-long double sample::midrange(sample a_sample) {
-  long double max = a_sample.maximum();
-  long double min = a_sample.minimum();
+long double sample::midrange() {
+  long double max = maximum();
+  long double min = minimum();
   long double midrange = (max + min)/2;
 
   return midrange;
+}
+
+long double sample::mean(){
+  long double n = numbers.size();
+  long double total = 0;
+  long double mean = 0;
+  for (int i = 0; i < n; ++i){
+    total = total + numbers[i];
+  }
+  mean = total/n;
+  return mean;
+}
+
+long double sample::variance(){
+  long double m = mean();
+  long double n = numbers.size();
+  long double tmp = 0;
+
+  for (int i = 0; i < n; i++){
+    tmp += (numbers[i] - m)*(numbers[i] - m);
+  }
+  return tmp/n;
+}
+
+long double sample::std_deviation(){
+  long double var = variance();
+  long double std = sqrt(var);
+
+  return std;
+}
+
+long double sample::median(){
+  size_t n = numbers.size();
+  long double median = 0;
+
+  sort(numbers.begin(), numbers.end());
+
+  if (n % 2 == 0){
+    median = (numbers[n/2 - 1] + numbers[n/2])/2;
+	      }
+  else {
+    median = numbers[n/2];
+    }
+    return median;
 }

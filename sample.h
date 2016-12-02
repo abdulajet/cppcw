@@ -4,38 +4,39 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include <cmath>
+#include <algorithm>
+
 using namespace std;
 #include "city.hh"
 
 class sample : public city {
   // DON'T CHANGE ANYTHING ABOVE THIS LINE!!! (You can add more includes)
- public:
+ private:
   vector<long double> numbers;
+ public:
 
-  sample();
+  sample(){};
   sample(vector<long double> v) : numbers(v){};
-  
+
 
   void print();
   vector<long double> get_data();
   long double minimum();
   long double maximum();
-  long double range(sample);
-  long double midrange(sample);
+  long double range();
+  long double midrange();
+  long double mean();
+  long double variance();
+  long double std_deviation();
+  long double median();
 
 };
-// test
 
-
-ostream & operator<< (ostream& s, sample n){
-	n.print();
-  return s;
-}
 
 vector<long double> sample::get_data(){
   return numbers;
 }
-
 
 /* With normal (non-generic) code, the source (.cc) includes the header (.h). */
 #endif
