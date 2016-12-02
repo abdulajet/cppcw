@@ -10,8 +10,6 @@ int main_test(int argc, char *argv[]) {
 	 * vector
 	 */
   vector<int> i = {1, 3, 6, 8, 4, 22};
-  vector<float> d = {1.0, 3.0, 6.1, 8.2, 4.0, 22.5};
-
   samplet<int> a_samplet(i); // = { 7, 11, 2, 13, 3, 5 };
 
 	cout << "\tBefore city_test_generic()\n";
@@ -19,9 +17,7 @@ int main_test(int argc, char *argv[]) {
 	cout << "\tAfter city_test_generic()\n";
 	/* Place your code for testing samplet after this line. */
 
-	//fix this
 	samplet<int> s;
-
 
 	while (cin >> s){}
 
@@ -38,10 +34,6 @@ int main_test(int argc, char *argv[]) {
 			 << s.mean() << endl
 			 << s.variance() << endl
 			 << s.std_deviation() << endl;
-
-
-
-
 
 	return 0;
 }

@@ -12,23 +12,25 @@ ostream & operator<< (ostream& s, sample v){
 
 istream& operator >> (istream& s, sample &v){
   int len = 0;
-  char lchev, colon, temp;
+  char lchev, colon;
+	long double temp;
   vector<long double> input;
 
-  if (s >> lchev){
-		if ((s >> len >> colon) && (colon == ':' && lchev == '<')){
+	if (s >> lchev){
+		if ((s >> len >> colon) && (colon == ':')){
 			while(s >> temp){
-				input.push_back(temp);
+				if (temp != '>'){
+					input.push_back(temp);
+				}
+			}
+			if (input.size() == len){
+				v = sample(input);
+			}else{
+				s.setstate(ios::badbit);
 			}
 		}else{
 			s.setstate(ios::badbit);
 		}
-  }
-
-	if (input.size() == len){
-		v = sample(input);
-	}else {
-		s.setstate(ios::badbit);
 	}
 
   return s;
@@ -58,9 +60,14 @@ int main_test(int argc, char *argv[]) {
 	// print vector contents from "a_sample"
 	//cout << a_sample << endl;
 
-
 	sample s;
-	while (cin >> s){
+
+	while (cin >> s){}
+
+	if (cin.bad()) {
+		cerr << "\nBad input \n\n";
+	}
+
 			cout << s << endl
 			 << s.minimum() << endl
 			 << s.maximum() << endl
@@ -71,11 +78,6 @@ int main_test(int argc, char *argv[]) {
 			 << s.variance() << endl
 			 << s.std_deviation() << endl;
 
-			if (cin.bad()) {
-				cerr << "\nBad input \n\n";
-			}
-
-		}
 			return 0;
 
 }
