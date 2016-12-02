@@ -17,9 +17,7 @@ int main_test(int argc, char *argv[]) {
 	cout << "\tAfter city_test_generic()\n";
 	/* Place your code for testing samplet after this line. */
 
-        
 	samplet<int> s;
-
 
 	while (cin >> s){}
 	
@@ -36,7 +34,6 @@ int main_test(int argc, char *argv[]) {
 			 << s.mean() << endl
 			 << s.variance() << endl
 			 << s.std_deviation() << endl;
-
 
 	return 0;
 }

@@ -112,7 +112,7 @@ template <typename A_Type> istream & operator >> (istream& s, samplet<A_Type> &v
   vector<A_Type> input;
 
   if (s >> lchev){
-    if ((s >> len >> colon) && (colon == ':')){
+    if (s >> len >> colon && colon == ':'){
       while(s >> temp){
         if (temp != '>'){
           input.push_back(temp);
@@ -126,7 +126,9 @@ template <typename A_Type> istream & operator >> (istream& s, samplet<A_Type> &v
     }else{
       s.setstate(ios::badbit);
     }
-  }
+  }else {
+	  	s.setstate(ios::badbit);
+	}
   return s;
 }
 

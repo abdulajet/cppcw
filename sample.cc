@@ -10,31 +10,32 @@ ostream & operator<< (ostream& s, sample v){
   return s;
 }
 
-
-
-istream & operator >> (istream& s, sample &p){
-  size_t len;
+istream& operator >> (istream& s, sample &v){
+  size_t len = 0;
   char lchev, colon;
-  long double temp;
+	long double temp;
   vector<long double> input;
 
-  if (s >> lchev){
-    if ((s >> len >> colon) && (colon == ':')){
-      while(s >> temp){
-        if (temp != '>'){
-          input.push_back(temp);
-        }
-      }
-      if (input.size() == len){
-        p = sample(input);
-      }else{
-        s.setstate(ios::badbit);
-      }
-    }else{
-      s.setstate(ios::badbit);
-    }
-  }
-  return s;
+	if (s >> lchev){
+		if (s >> len >> colon && colon == ':'){
+			while(s >> temp){
+				if (temp != '>'){
+					input.push_back(temp);
+				}
+			}
+			if (input.size() == len){
+				v = sample(input);
+			}else{
+				s.setstate(ios::badbit);
+			}
+		}else{
+			s.setstate(ios::badbit);
+		}
+	}else {
+	  	s.setstate(ios::badbit);
+	}
+
+   return s;
 }
 
 
@@ -45,7 +46,18 @@ int main_test(int argc, char *argv[]) {
 	 * vector
 	 */
 
-  //TODO possibly change all for loops to iterators - more efficient
+  /*
+    the problem is that within the input "<2: 1.18973e+4932 1.18973e+4932 >",
+    the numbers inputted is the maximum number the datatype long double can
+    hold. 
+
+    One way of fixing this me and my partner have thought of is to create a new
+    data structure that takes a number that big and stores it in an array (one 
+    element per digit) and use methods to perform the mathematical calculations
+    that are needed. 
+   */
+
+  // my partner and I have contributed an even 50/50 amount to this work.
 
   // definition of member variable(s)
   vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
@@ -63,9 +75,14 @@ int main_test(int argc, char *argv[]) {
 	// print vector contents from "a_sample"
 	//cout << a_sample << endl;
 
-
 	sample s;
-	while (cin >> s){
+
+	while (cin >> s){}
+
+	if (cin.bad()) {
+		cerr << "\nBad input \n\n";
+	}
+
 			cout << s << endl
 			 << s.minimum() << endl
 			 << s.maximum() << endl
@@ -76,11 +93,6 @@ int main_test(int argc, char *argv[]) {
 			 << s.variance() << endl
 			 << s.std_deviation() << endl;
 
-			if (cin.bad()) {
-				cerr << "\nBad input \n\n";
-			}
-
-		}
 			return 0;
 
 }
