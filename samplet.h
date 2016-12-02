@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 #include "cityt.hh"
 
@@ -13,8 +14,8 @@ class samplet : public cityt<A_Type> {
   vector<A_Type> numbers;
  public:
   
-  sample();
-  sample(vector<A_Type> v) : numbers(v){};
+  samplet();
+  samplet(vector<A_Type> v) : numbers(v){};
   
 
   void print();
@@ -32,3 +33,4 @@ class samplet : public cityt<A_Type> {
 /* With generic code, it's the header (.h) that includes the source (.cc), not the other way around that is the normal practice with non-generic code. */
 #include "samplet.cc"
 #endif
+

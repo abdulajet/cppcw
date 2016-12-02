@@ -40,6 +40,7 @@ ostream & operator<< (ostream& s, sample v){
   return s;
 }
 
+/*
 istream& operator >> (istream& s, sample &v){
   int len;
   char lchev, colon, temp;
@@ -65,11 +66,12 @@ istream& operator >> (istream& s, sample &v){
   //test
   return s;
 }
-
+*/
 
 vector<long double> sample::get_data(){
   return numbers;
 }
+
 
 
 /* With normal (non-generic) code, the source (.cc) includes the header (.h). */
