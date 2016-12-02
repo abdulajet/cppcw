@@ -9,8 +9,8 @@ int main_test(int argc, char *argv[]) {
 	 * you have defined the samplet constructor that takes a
 	 * vector
 	 */
-  vector<int> i = {1, 3, 6, 8, 4, 22};
-  samplet<int> a_samplet(i); // = { 7, 11, 2, 13, 3, 5 };
+
+  samplet<int> a_samplet; // = { 7, 11, 2, 13, 3, 5 };
 
 	cout << "\tBefore city_test_generic()\n";
 	 city_test_generic(a_samplet);
@@ -20,11 +20,11 @@ int main_test(int argc, char *argv[]) {
 	samplet<int> s;
 
 	while (cin >> s){}
-
+	
 	if (cin.bad()) {
 		cerr << "\nBad input \n\n";
-	}
-
+		}
+	
 			cout << s << endl
 			 << s.minimum() << endl
 			 << s.maximum() << endl

@@ -6,12 +6,12 @@
 using namespace std;
 
 ostream & operator<< (ostream& s, sample v){
-	v.print();
+	v.print(s);
   return s;
 }
 
 istream& operator >> (istream& s, sample &v){
-  int len = 0;
+  size_t len = 0;
   char lchev, colon;
 	long double temp;
   vector<long double> input;
@@ -31,10 +31,14 @@ istream& operator >> (istream& s, sample &v){
 		}else{
 			s.setstate(ios::badbit);
 		}
+	}else {
+	  	s.setstate(ios::badbit);
 	}
 
-  return s;
+   return s;
 }
+
+
 
 int main_test(int argc, char *argv[]) {
 	/* an empty sample object - initialise with a vector once
@@ -42,10 +46,21 @@ int main_test(int argc, char *argv[]) {
 	 * vector
 	 */
 
-  //TODO possibly change all for loops to iterators - more efficient
+  /*
+    the problem is that within the input "<2: 1.18973e+4932 1.18973e+4932 >",
+    the numbers inputted is the maximum number the datatype long double can
+    hold. 
+
+    One way of fixing this me and my partner have thought of is to create a new
+    data structure that takes a number that big and stores it in an array (one 
+    element per digit) and use methods to perform the mathematical calculations
+    that are needed. 
+   */
+
+  // my partner and I have contributed an even 50/50 amount to this work.
 
   // definition of member variable(s)
-  //vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
+  vector<long double> numbers = {7, 11 ,2 ,13 ,3 ,5};
 
 
   //creating a new sample object called "a_sample"
@@ -82,13 +97,13 @@ int main_test(int argc, char *argv[]) {
 
 }
 
-void sample::print() {
+void sample::print(ostream &o) {
   // prints sample vector to an output stream
-  cout << "<" << numbers.size() << ": ";
+  o << "<" << numbers.size() << ": ";
    for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
-       cout << *i << " ";
+       o << *i << " ";
   }
-   cout << ">";
+   o << ">";
 }
 
 long double sample::minimum() {

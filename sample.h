@@ -17,10 +17,10 @@ class sample : public city {
  public:
 
   sample(){};
-  sample(vector<long double> v) : numbers(v){};
+  sample(vector<long double> &v) : numbers(v){};
 
 
-  void print();
+  void print(ostream &o);
   vector<long double> get_data();
   long double minimum();
   long double maximum();
