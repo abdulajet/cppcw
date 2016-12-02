@@ -11,31 +11,25 @@ ostream & operator<< (ostream& s, sample v){
 }
 
 istream& operator >> (istream& s, sample &v){
-  int len;
+  int len = 0;
   char lchev, colon, temp;
   vector<long double> input;
 
   if (s >> lchev){
-    if ((s >> len >> colon) && (lchev == '<' && colon == ':')){
-      while(s >> temp){
-        if (temp == '>'){
-          v = sample(input);
-          break;
-        }else{
-          input.push_back(temp);
-        }
-      }
-
-      if (input.size() != len) {
-        s.setstate(ios::badbit);
-      }
-
-    } else{
-      s.setstate(ios::badbit);
-    }
-  } else {
-    s.setstate(ios::badbit);
+		if ((s >> len >> colon) && (colon == ':' && lchev == '<')){
+			while(s >> temp){
+				input.push_back(temp);
+			}
+		}else{
+			s.setstate(ios::badbit);
+		}
   }
+
+	if (input.size() == len){
+		v = sample(input);
+	}else {
+		s.setstate(ios::badbit);
+	}
 
   return s;
 }

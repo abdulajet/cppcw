@@ -97,3 +97,30 @@ template <typename A_Type> ostream & operator<< (ostream& s, samplet<A_Type> v){
 	v.print();
   return s;
 }
+
+template <typename A_Type> istream & operator >> (istream& s, samplet<A_Type> &v){
+  int len;
+  char lchev, colon;
+  A_Type temp;
+  vector<A_Type> input;
+
+  if (s >> lchev){
+    if ((s >> len >> colon) && (colon == ':')){
+      while(s >> temp){
+        if (temp != '>'){
+          input.push_back(temp);
+        }
+      }
+      if (input.size() == len){
+        v = samplet<A_Type>(input);
+      }else{
+        s.setstate(ios::badbit);
+      }
+    }else{
+      s.setstate(ios::badbit);
+    }
+  }
+
+
+  return s;
+}

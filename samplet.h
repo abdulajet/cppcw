@@ -16,7 +16,7 @@ class samplet : public cityt<A_Type> {
   private:
   vector<A_Type> numbers;
  public:
-  samplet();
+  samplet(){};
   samplet(vector<A_Type> v) : numbers(v){};
 
   void print();
