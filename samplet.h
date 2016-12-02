@@ -4,12 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-using namespace std;
+#include <cmath>
 #include "cityt.hh"
+using namespace std;
 
-template <typename T>
-class samplet : public cityt<T> {
-  // DON'T CHANGE ANYTHING ABOVE THIS LINE!!! (You can add more includes)
+
 
 template <typename A_Type>
 class samplet : public cityt<A_Type> {
@@ -17,8 +16,8 @@ class samplet : public cityt<A_Type> {
   private:
   vector<A_Type> numbers;
  public:
-  sample();
-  sample(vector<A_Type> v) : numbers(v){};
+  samplet();
+  samplet(vector<A_Type> v) : numbers(v){};
 
   void print();
   vector<A_Type> get_data();
