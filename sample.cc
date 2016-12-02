@@ -17,7 +17,7 @@ istream& operator >> (istream& s, sample &v){
   vector<long double> input;
 
 	if (s >> lchev){
-		if ((s >> len >> colon) && (colon == ':')){
+		if (s >> len >> colon && colon == ':'){
 			while(s >> temp){
 				if (temp != '>'){
 					input.push_back(temp);

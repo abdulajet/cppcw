@@ -8,8 +8,6 @@
 #include "cityt.hh"
 using namespace std;
 
-
-
 template <typename A_Type>
 class samplet : public cityt<A_Type> {
   // DON'T CHANGE ANYTHING ABOVE THIS LINE!!! (You can add more includes)
