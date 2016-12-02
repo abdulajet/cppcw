@@ -5,6 +5,40 @@
 
 using namespace std;
 
+ostream & operator<< (ostream& s, sample v){
+	v.print(s);
+  return s;
+}
+
+
+
+istream & operator >> (istream& s, sample &p){
+  size_t len;
+  char lchev, colon;
+  long double temp;
+  vector<long double> input;
+
+  if (s >> lchev){
+    if ((s >> len >> colon) && (colon == ':')){
+      while(s >> temp){
+        if (temp != '>'){
+          input.push_back(temp);
+        }
+      }
+      if (input.size() == len){
+        p = sample(input);
+      }else{
+        s.setstate(ios::badbit);
+      }
+    }else{
+      s.setstate(ios::badbit);
+    }
+  }
+  return s;
+}
+
+
+
 int main_test(int argc, char *argv[]) {
 	/* an empty sample object - initialise with a vector once
 	 * you have defined the sample constructor that takes a
@@ -18,45 +52,46 @@ int main_test(int argc, char *argv[]) {
 
 
   //creating a new sample object called "a_sample"
-  sample a_sample(numbers); // = { 7, 11, 2, 13, 3, 5};
-   
+  sample a_sample; // = { 7, 11, 2, 13, 3, 5};
+
 	cout << "\tBefore city_test()\n";
 	city_test(a_sample);
 	cout << "\tAfter city_test()\n";
 
 	/* Place your code for testing sample after this line. */
 
-
-//	a_sample.print();
-
 	// print vector contents from "a_sample"
-	cout << a_sample << endl;
+	//cout << a_sample << endl;
 
 
-	// print test for mathematical functions
-	cout << a_sample.minimum() << endl;
-	cout << a_sample.maximum() << endl;
-	cout << a_sample.get_data() << endl;
-	cout << a_sample.range() << endl;
-	cout << a_sample.midrange() << endl;
-	cout << a_sample.mean() << endl;
-	cout << a_sample.variance() << endl;
-	cout << a_sample.std_deviation() << endl;
-	cout << a_sample.median() << endl;
+	sample s;
+	while (cin >> s){
+			cout << s << endl
+			 << s.minimum() << endl
+			 << s.maximum() << endl
+			 << s.range() << endl
+			 << s.midrange() << endl
+			 << s.median() << endl
+			 << s.mean() << endl
+			 << s.variance() << endl
+			 << s.std_deviation() << endl;
 
+			if (cin.bad()) {
+				cerr << "\nBad input \n\n";
+			}
 
-	//	a_sample.get_data().print();
+		}
+			return 0;
 
-	return 0;
 }
 
-void sample::print() {
+void sample::print(ostream &o) {
   // prints sample vector to an output stream
-  cout << "<" << numbers.size() << ": ";
+  o << "<" << numbers.size() << ": ";
    for(vector<long double>::iterator i = numbers.begin(); i!= numbers.end(); i++){
-       cout << *i << " ";
+       o << *i << " ";
   }
-   cout << ">";
+   o << ">";
 }
 
 long double sample::minimum() {
@@ -104,7 +139,7 @@ long double sample::mean(){
   long double total = 0;
   long double mean = 0;
   for (int i = 0; i < n; ++i){
-    total = total + numbers[i]; 
+    total = total + numbers[i];
   }
   mean = total/n;
   return mean;
